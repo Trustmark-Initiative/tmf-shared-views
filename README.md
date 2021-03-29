@@ -1,3 +1,5 @@
+## About
+This project contains shared Grails visualization/ui components that are used in multiple tools.   
 
 ## How to Build
 'gradle clean build install' will build and install the shared views.
