@@ -1,2 +1,4 @@
-# tmf-shared-views
-Trustmark Framework Shared Views - These are shared visualization components between all Trustmark Tools.
+
+## How to Build
+'gradle clean build install' will build and install the shared views.
+> Note that shared-views uses the **tmf-api** library, so it must be built first.
