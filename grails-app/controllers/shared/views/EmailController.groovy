@@ -21,12 +21,12 @@ class EmailController {
 
         def status = [rc: "success", message: "Success updated email settings."]
 
-        emailService.add(MailParameter.SMTP_ADDRESS, params.smtpAddr)
-        emailService.add(MailParameter.SMTP_USER, params.smtpUser)
-        emailService.add(MailParameter.SMTP_HOST, params.smtpHost)
-        emailService.add(MailParameter.SMTP_PORT, params.smtpPort)
-        emailService.add(MailParameter.SMTP_AUTH, params.smtpAuth)
-        emailService.add(MailParameter.SMTP_PSWD, params.emailPswd)
+        emailService.add(TMMailParameter.SMTP_ADDRESS, params.smtpAddr)
+        emailService.add(TMMailParameter.SMTP_USER, params.smtpUser)
+        emailService.add(TMMailParameter.SMTP_HOST, params.smtpHost)
+        emailService.add(TMMailParameter.SMTP_PORT, params.smtpPort)
+        emailService.add(TMMailParameter.SMTP_AUTH, params.smtpAuth)
+        emailService.add(TMMailParameter.SMTP_PSWD, params.emailPswd)
 
         withFormat  {
             json {
@@ -53,12 +53,12 @@ class EmailController {
         log.debug("EmailController.sendEmail ... ${params.emailAddr} ")
 
         def status = [rc: "success", message: "Successfully sent email."]
-        if(emailService.get(MailParameter.SMTP_HOST)
-           && emailService.get(MailParameter.SMTP_PORT)
-           && emailService.get(MailParameter.SMTP_ADDRESS)
-           && emailService.get(MailParameter.SMTP_AUTH)
-           && emailService.get(MailParameter.SMTP_PSWD)
-           && emailService.get(MailParameter.SMTP_USER)
+        if(emailService.get(TMMailParameter.SMTP_HOST)
+           && emailService.get(TMMailParameter.SMTP_PORT)
+           && emailService.get(TMMailParameter.SMTP_ADDRESS)
+           && emailService.get(TMMailParameter.SMTP_AUTH)
+           && emailService.get(TMMailParameter.SMTP_PSWD)
+           && emailService.get(TMMailParameter.SMTP_USER)
         )  {
             boolean rc = emailService.sendEmail(params.attachFiles, params.emailAddr, params.emailSubject, params.emailBody)
             if(!rc)  {

@@ -73,6 +73,11 @@ class EmailService {
                 })
             }
 
+            String host = get(TMMailParameter.SMTP_HOST);
+            String port = get(TMMailParameter.SMTP_PORT);
+
+            log.debug("emailClient -> host: ${host} port: ${port}")
+
             emailClient.setUser(get(TMMailParameter.SMTP_USER))
                     .setSmtpHost(get(TMMailParameter.SMTP_HOST))
                     .setSmtpPort(get(TMMailParameter.SMTP_PORT))
