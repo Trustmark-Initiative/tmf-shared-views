@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-version "0.1"
+version "0.2"
 group "shared.views"
 
 apply plugin:"eclipse"
@@ -58,8 +58,8 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.4.10.Final"
     compile "org.hibernate:hibernate-ehcache:5.4.10.Final"
 
-    compile "edu.gatech.gtri.trustmark:tf-api:1.4.5"
-    compile "edu.gatech.gtri.trustmark:tf-api-impl:1.4.11"
+    compile "edu.gatech.gtri.trustmark:tf-api:1.4.18"
+    compile "edu.gatech.gtri.trustmark:tf-api-impl:1.4.27"
 
     compileOnly "io.micronaut:micronaut-inject-groovy"
 

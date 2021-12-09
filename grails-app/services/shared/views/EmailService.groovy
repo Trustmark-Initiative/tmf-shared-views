@@ -101,6 +101,48 @@ class EmailService {
         return rc
     }
 
+    def sendEmailWithContent(List<MultipartFile> files, String... args)  {
+        log.debug("sendEMail -> ${args[0]}")
+
+        boolean rc = false
+
+        TrustmarkMailClient emailClient = getMailClient()
+        if(emailClient != null)  {
+            if(files != null)  {
+                files.forEach({f ->
+                    log.debug("uploaded files ${f.originalFilename}  ${f.name}")
+                    emailClient.addAttachment(f.originalFilename, new ByteArrayDataSource(f.getInputStream(), f.getContentType()))
+                })
+            }
+
+            String host = get(TMMailParameter.SMTP_HOST);
+            String port = get(TMMailParameter.SMTP_PORT);
+
+            log.debug("emailClient -> host: ${host} port: ${port}")
+
+            emailClient.setUser(get(TMMailParameter.SMTP_USER))
+                    .setSmtpHost(get(TMMailParameter.SMTP_HOST))
+                    .setSmtpPort(get(TMMailParameter.SMTP_PORT))
+                    .setFromAddress(get(TMMailParameter.SMTP_ADDRESS))
+                    .setSmtpAuthorization(Boolean.parseBoolean(get(TMMailParameter.SMTP_AUTH)))
+                    .addRecipient(args[0])
+                    .setSubject(args[1])
+                    .setContent(args[2], "text/html")
+                    .setPswd(get(TMMailParameter.SMTP_PSWD))
+
+            try {
+                emailClient.sendMail()
+                rc = true
+            } catch (Exception e)  {
+                log.error(e.getMessage())
+            }
+        }  else {
+            log.debug("TrustmarkMailClient implementation NOT FOUND!")
+        }
+
+        return rc
+    }
+
     def getMailClient()  {
         ServiceLoader<TrustmarkMailClient> loader = ServiceLoader.load(TrustmarkMailClient.class);
         Iterator<TrustmarkMailClient> iterator = loader.iterator();
