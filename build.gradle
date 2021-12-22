@@ -58,8 +58,8 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.4.10.Final"
     compile "org.hibernate:hibernate-ehcache:5.4.10.Final"
 
-    compile "edu.gatech.gtri.trustmark:tf-api:1.4.18"
-    compile "edu.gatech.gtri.trustmark:tf-api-impl:1.4.27"
+    compile "edu.gatech.gtri.trustmark:tf-api:1.4.21"
+    compile "edu.gatech.gtri.trustmark:tf-api-impl:1.4.30"
 
     compileOnly "io.micronaut:micronaut-inject-groovy"
 
