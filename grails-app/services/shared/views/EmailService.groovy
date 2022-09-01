@@ -49,13 +49,17 @@ class EmailService {
            if(grailsApplication.config.smtp.pswd) {
                add(TMMailParameter.SMTP_PSWD, grailsApplication.config.smtp.pswd)
            }
+           if(grailsApplication.config.mail.enabled) {
+               add(TMMailParameter.MAIL_ENABLED, grailsApplication.config.mail.enabled)
+           }
        }
            return [ smtpFrom: get(TMMailParameter.SMTP_ADDRESS)
                     , smtpUser: get(TMMailParameter.SMTP_USER)
                     , smtpHost: get(TMMailParameter.SMTP_HOST)
                     , smtpPort: get(TMMailParameter.SMTP_PORT)
-                    , smtpAuthenticate: get(TMMailParameter.SMTP_AUTH)
+                    , smtpAuthenticate: Boolean.parseBoolean(get(TMMailParameter.SMTP_AUTH))
                     , smtpPswd: get(TMMailParameter.SMTP_PSWD)
+                    , mailEnabled: Boolean.parseBoolean(get(TMMailParameter.MAIL_ENABLED))
            ]
     }
 
@@ -152,4 +156,13 @@ class EmailService {
         return null;
     }
 
+    def mailEnabled() {
+        if (get(TMMailParameter.MAIL_ENABLED)) {
+            return Boolean.parseBoolean(get(TMMailParameter.MAIL_ENABLED))
+        } else if (grailsApplication.config.mail.enabled) {
+            return Boolean.parseBoolean(grailsApplication.config.mail.enabled)
+        }
+
+        return false
+    }
 }

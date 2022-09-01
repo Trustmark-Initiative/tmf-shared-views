@@ -27,6 +27,7 @@ class EmailController {
         emailService.add(TMMailParameter.SMTP_PORT, params.smtpPort)
         emailService.add(TMMailParameter.SMTP_AUTH, params.smtpAuth)
         emailService.add(TMMailParameter.SMTP_PSWD, params.emailPswd)
+        emailService.add(TMMailParameter.MAIL_ENABLED, params.mailEnabled)
 
         withFormat  {
             json {
@@ -60,7 +61,17 @@ class EmailController {
            && emailService.get(TMMailParameter.SMTP_PSWD)
            && emailService.get(TMMailParameter.SMTP_USER)
         )  {
-            boolean rc = emailService.sendEmail(params.attachFiles, params.emailAddr, params.emailSubject, params.emailBody)
+
+            boolean rc = false
+
+            if (params.attachFiles && params.attachFiles instanceof MultipartFile) {
+                List<MultipartFile> attachedFiles = new ArrayList<>()
+                attachedFiles.add(params.attachFiles)
+                rc = emailService.sendEmail(attachedFiles, params.emailAddr, params.emailSubject, params.emailBody)
+            } else {
+                rc = emailService.sendEmail(params.attachFiles, params.emailAddr, params.emailSubject, params.emailBody)
+            }
+
             if(!rc)  {
                 status.rc = "failure"
                 status.message = "Email not sent!"

@@ -9,6 +9,9 @@ class TMMailParameter {
     public static final String SMTP_AUTH = "smtp_authenticate"
     public static final String SMTP_PSWD = "smtp_pswd"
 
+    public static final String MAIL_ENABLED = "mail_enabled"
+
+
     String name
     String value
     Date lastUpdated

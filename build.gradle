@@ -16,7 +16,7 @@ plugins {
     id 'maven-publish'
 }
 
-version "0.3"
+version "0.4"
 group "shared.views"
 
 apply plugin:"org.grails.grails-plugin"
@@ -64,8 +64,8 @@ dependencies {
 
     implementation "org.hibernate:hibernate-ehcache:5.6.5.Final"
 
-    implementation "edu.gatech.gtri.trustmark:tf-api:1.4.24"
-    implementation "edu.gatech.gtri.trustmark:tf-api-impl:1.4.35"
+    implementation "edu.gatech.gtri.trustmark:tf-api:1.4.37"
+    implementation "edu.gatech.gtri.trustmark:tf-api-impl:1.4.58"
 
     testImplementation "io.micronaut:micronaut-inject-groovy"
 
@@ -106,7 +106,7 @@ publishing {
         maven (MavenPublication) {
             groupId = 'shared.views'
             artifactId = 'tmf-shared-views'
-            version = '0.3'
+            version = '0.4'
 
             from components.java
             artifact sourcesJar
