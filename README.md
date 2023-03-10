@@ -17,7 +17,9 @@ spring:
 
 are included, you may need to modify max-file-size and max-request-size
 
-to include the shared-views plugin in your application
+To include the shared-views plugin in your application for versions up to 0.7:
+  add implementation "shared.views:tmf-shared-views:0.5" (or whatever is the latest version) to your build.gradle file
 
-add implementation "shared.views:tmf-shared-views:0.3" to your build.gradle file
+To include the shared-views plugin in your application for verisons 0.8 to current, for example:
+  add implementation "edu.gatech.gtri.trustmark:tf-grails-shared-views:0.9.1"
 
