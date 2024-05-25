@@ -3,7 +3,8 @@ This repository holds the source for shared views that are used across all of th
 
 ## How to Build
 
-gradle publishToMavenLocal will build and install the shared views
+gradle publishToMavenLocal will build and install the shared views into the local maven repository
+gradle publishMavenPublicationToCentralRepository will build and install the shared views to Artifactory
 Note that shared-views uses the tmf-api, version 1.4.2 at a minimum
 
 for uploading attachments, make sure that application.yml settings for
@@ -20,6 +21,6 @@ are included, you may need to modify max-file-size and max-request-size
 To include the shared-views plugin in your application for versions up to 0.7:
   add implementation "shared.views:tmf-shared-views:0.5" (or whatever is the latest version) to your build.gradle file
 
-To include the shared-views plugin in your application for verisons 0.8 to current, for example:
-  add implementation "edu.gatech.gtri.trustmark:tf-grails-shared-views:0.9.1"
+To include the shared-views plugin in your application for verisons 0.8 to current:
+  add implementation "edu.gatech.gtri.trustmark:tf-grails-shared-views:0.8"
 
